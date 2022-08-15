@@ -17,7 +17,7 @@ if (mysqli_num_rows($result)>0) {
 }
 
 if($pwd != $pwd_re) { //비밀번호 확인
-    echo "<script>alert('비밀번호를 정확히 두번 작성하세요. ');</script>";
+    echo "<script>alert('비밀번호를 정확히 두번 작성하세요.');</script>";
     echo "<script>location.replace('register.php');</script>";
     exit;
 }
