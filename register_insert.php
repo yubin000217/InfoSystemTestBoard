@@ -16,7 +16,7 @@ if (mysqli_num_rows($result)>0) {
     exit;
 }
 
-if($pwd != $pwd_re) {
+if($pwd != $pwd_re) { //비밀번호 확인
     echo "<script>alert('비밀번호를 정확히 두번 작성하세요. ');</script>";
     echo "<script>location.replace('register.php');</script>";
     exit;
@@ -24,10 +24,10 @@ if($pwd != $pwd_re) {
 
 $sql = "insert into member
             Set id = '$id', pwd='$pwd', name='$name', email='$email'";
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($conn, $sql); 
 
 if($result) {
-    echo "<script>alert('회원가입이 완료되었습니다. ');</script>";
+    echo "<script>alert('회원가입이 완료되었습니다.');</script>";
     echo "<script>location.replace('login.php');</script>";
     exit;
 }
