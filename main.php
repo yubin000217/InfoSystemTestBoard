@@ -1,3 +1,58 @@
-<?php
-    echo "Hiello";
-    ?>
+<html>
+    <head>
+        <title>정보처리기사 게시판</title>
+        <style>
+            .main_button {
+                height:400px;
+                width:400px;
+                background-color:#e0f2f0;
+                border: 4px solid #008080;
+                border-radius:50px;
+                text-align:center;
+                line-height:400px;
+                font-size:40px;
+                color:#008080;
+                font-weight:bold;
+                margin-top:100px;
+            }
+            .main_button:hover {
+                height:400px;
+                width:400px;
+                background-color:#e0f2f0;
+                border: 4px solid #008080;
+                border-radius:50px;
+                text-align:center;
+                line-height:400px;
+                font-size:40px;
+                color:#008080;
+                font-weight:bold;
+                margin-top:100px;
+                box-shadow:1px 1px 10px #008080;
+            }
+            .main_button:active {
+                height:400px;
+                width:400px;
+                background-color:#b2dfde;
+                border: 4px solid #008080;
+                border-radius:50px;
+                text-align:center;
+                line-height:400px;
+                font-size:40px;
+                color:#008080;
+                font-weight:bold;
+                margin-top:100px;
+            }
+
+        </style>
+    </head>
+<body>
+    <h4 style="margin-left:10px; margin-top:10px; margin-botton:0px; height:10px; padding:0px; float:left;">정보처리기사 게시판</h4>
+    <h4 style="text-align:right; margin-right:10px; margin-top:10px; margin-bottom:0px; height:10px; padding:0px; float:right;" >로그인</h4>
+    <br><br>
+    <hr style="background-color: #fff; border-top: 2px dashed #8c8b8b;">
+    <div style="height:600px; ">
+        <div class="main_button" style="float:left; margin-left:200px; margin-right:100px;">필기</div>
+        <div class="main_button" style="float:right; margin-left:100px; margin-right:200px;">실기</div>
+    </div>
+</body>
+</html>
