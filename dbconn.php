@@ -1,7 +1,7 @@
 <?php
     $mysql_host = "localhost";
     $mysql_user = "root";
-    $mysql_pwd = "12345";
+    $mysql_pwd = "1234";
     $mysql_db = "infosystemtestboard";
 
     $conn = mysqli_connect($mysql_host, $mysql_user, $mysql_pwd, $mysql_db);

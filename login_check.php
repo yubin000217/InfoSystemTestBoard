@@ -19,7 +19,7 @@ if (!$mb['id']) {
     echo "<script>location.replace('login.php');</script>";
     exit;
 }
-if($pwd != mb["pwd"]) {
+if($pwd != $mb["pwd"]) {
     echo "<script>alert('비밀번호가 틀립니다. ');</script>";
     echo "<script>location.replace('login.php');</script>";
     exit;
