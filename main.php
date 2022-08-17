@@ -57,31 +57,14 @@
     }
     ?>
 
-    <script>
-        function left_clicked() {
-            location.href="about_1st_test.php";
-            <?php
-                $_SESSION["which_test"] = "필기";
-                ?>
-            return;
-        }
-        function right_clicked() {
-            location.href="about_1st_test.php";
-            <?php
-                $_SESSION["which_test"] = "실기";
-                ?>
-            return;
-        }
-    </script>
-
     <h4 style="margin-left:10px; margin-top:10px; margin-botton:0px; height:10px; padding:0px; float:left;">정보처리기사 게시판</h4>
     <h4 onclick="location.href='login.php'" class="login" >
         <?php if(!$user_id) {?>로그인<?php } else { echo "<div id='user-name' >$user_id 님 환영합니다.</div>"; }?></h4>
     <br><br>
     <hr style="background-color: #fff; border-top: 2px dashed #008080;">
     <div style="height:600px; ">
-        <div class="main_button" onclick="left_clicked()" style="float:left; margin-left:200px; margin-right:100px;">필기</div>
-        <div class="main_button" onclick="right_clicked()" style="float:right; margin-left:100px; margin-right:200px;">실기</div>
+        <div class="main_button" onclick="location.href='about_1st_test.php'" style="float:left; margin-left:200px; margin-right:100px;">필기</div>
+        <div class="main_button" onclick="location.href='about_2nd_test.php'" style="float:right; margin-left:100px; margin-right:200px;">실기</div>
     </div>
 </body>
 </html>
