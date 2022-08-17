@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>정보처리기사 필기</title>
+        <title>필기 게시판</title>
         <style>
             .board_menu {
                 width:450px;
