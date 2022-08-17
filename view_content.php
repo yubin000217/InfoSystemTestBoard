@@ -79,15 +79,16 @@
     </head>
 <body> 
     <?php //로그인 된 경우 회원 이름 띄우기 구현 필요
-    /* session_start();
+    session_start();
     $user_id = "";
-    if($_SESSION["id"]) {
+    if(isset($_SESSION["id"])) {
         $user_id = $_SESSION["id"];
-    } */
+    }
     ?>
 
-    <h4 style="margin-left:10px; margin-top:10px; margin-botton:0px; height:10px; padding:0px; float:left;">정보처리기사 필기 게시판</h4>
-    <h4 style="text-align:right; margin-right:10px; margin-top:10px; margin-bottom:0px; height:10px; padding:0px; float:right;" >로그인</h4>
+    <h4 onclick="location.href='main.php'" style="margin-left:10px; margin-top:10px; margin-botton:0px; height:10px; padding:0px; float:left;">정보처리기사 필기 게시판</h4>
+    <h4 onclick="location.href='login.php'" style="text-align:right; margin-right:10px; margin-top:10px; margin-bottom:0px; height:10px; padding:0px; float:right;" >
+        <?php if(!$user_id) {?>로그인<?php } else { echo "<div id='user-name' >$user_id 님 환영합니다.</div>"; }?></h4>
     <br><br>
     <hr style="background-color: #fff; border-top: 2px dashed #008080;">
     <div style="display:flex; justify-content:center;">
