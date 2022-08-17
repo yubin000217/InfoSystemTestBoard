@@ -128,7 +128,7 @@
     </div>
     <div style=" display:flex; justify-content:center;">
         <div style=" margin-top:30px; width:1250px;">
-            <button class="new_content">새 글 쓰기</button>
+            <button class="new_content" onclick="location.href='new_content.php'">새 글 쓰기</button>
         </div>
     </div>
     <div style="display:flex; justify-content:center;">
