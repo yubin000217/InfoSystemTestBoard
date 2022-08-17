@@ -15,4 +15,4 @@
 
     mysqli_close($conn);
 
-    echo "<script> history.go(-1); </script>";
+    echo "<script> history.go(-2); </script>";
