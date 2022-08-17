@@ -118,15 +118,31 @@
 
     <script>
         function qa_clicked() {
-            $_SESSION["board_type"] = "qa";
             var element = document.getElementById('qa');
             element.style.backgroundColor="#e0f2f0"
+            document.getElementById('review').style.backgroundColor="white";
+            document.getElementById('info').style.backgroundColor="white";
+            <?php
+                $_SESSION["board_type"] = "qa";
+                ?>
         }
         function review_clicked() {
-            $_SESSION["board_type"] = "review";
+            <?php
+                $_SESSION["board_type"] = "review";
+                ?>
+            var element = document.getElementById('review');
+            element.style.backgroundColor="#e0f2f0"
+            document.getElementById('qa').style.backgroundColor="white";
+            document.getElementById('info').style.backgroundColor="white";
         }
         function info_clicked() {
-            $_SESSION["board_type"] = "info";
+            <?php
+                $_SESSION["board_type"] = "info";
+                ?>
+            var element = document.getElementById('info');
+            element.style.backgroundColor="#e0f2f0"
+            document.getElementById('review').style.backgroundColor="white";
+            document.getElementById('qa').style.backgroundColor="white";
         }
     </script>
 
