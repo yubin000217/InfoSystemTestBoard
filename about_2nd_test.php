@@ -114,6 +114,8 @@
     }
 
     $_SESSION["which_test"] = "실기";
+
+    $_SESSION["board_type"] = "";
     ?>
 
     <script>
@@ -122,27 +124,21 @@
             element.style.backgroundColor="#e0f2f0"
             document.getElementById('review').style.backgroundColor="white";
             document.getElementById('info').style.backgroundColor="white";
-            <?php
-                $_SESSION["board_type"] = "qa";
-                ?>
+            sessionStorage.setItem('board_type', 'qa');
         }
         function review_clicked() {
-            <?php
-                $_SESSION["board_type"] = "review";
-                ?>
             var element = document.getElementById('review');
             element.style.backgroundColor="#e0f2f0"
             document.getElementById('qa').style.backgroundColor="white";
             document.getElementById('info').style.backgroundColor="white";
+            sessionStorage.setItem('board_type', 'review');
         }
         function info_clicked() {
-            <?php
-                $_SESSION["board_type"] = "info";
-                ?>
             var element = document.getElementById('info');
             element.style.backgroundColor="#e0f2f0"
             document.getElementById('review').style.backgroundColor="white";
             document.getElementById('qa').style.backgroundColor="white";
+            sessionStorage.setItem('board_type', 'info');
         }
     </script>
 
@@ -153,7 +149,7 @@
     <hr style="background-color: #fff; border-top: 2px dashed #008080;">
     <div style="display:flex; justify-content:center;">
         <div style="display:inline-block;">
-            <div class="board_menu" id="qa" onclick='qa_clicked()' style="float:left;">Q&A</div> <!-- 내가 있는 게시판 백그라운드 칠하기 구현 필요 -->
+            <div class="board_menu" id="qa" onclick='qa_clicked()' style="float:left;">Q&A</div> 
             <div class="board_menu" id="review" onclick='review_clicked()' style="float:left;">후기</div>
             <div class="board_menu" id="info" onclick='info_clicked()' style="float:left;">정보</div>
         </div>
