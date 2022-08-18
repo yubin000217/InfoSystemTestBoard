@@ -142,7 +142,7 @@
         }
     </script>
 
-    <h4 onclick="location.href='main.php'" style="margin-left:10px; margin-top:10px; margin-botton:0px; height:10px; padding:0px; float:left;">실기 게시판</h4>
+    <h4 onclick="location.href='main.php'" style="margin-left:10px; margin-top:10px; margin-botton:0px; height:10px; padding:0px; float:left;">실기게시판</h4>
     <h4 onclick="location.href='login.php'" style="text-align:right; margin-right:10px; margin-top:10px; margin-bottom:0px; height:10px; padding:0px; float:right;" >
         <?php if(!$user_id) {?>로그인<?php } else { echo "<div id='user-name' >$user_id 님 환영합니다.</div>"; }?></h4>
     <br><br>
@@ -155,15 +155,15 @@
         </div>
     </div>
     <div style="display:flex; justify-content:center;">
-        <input class="search_input">
-        <button class="search_button">찾아보기</button>
+        <input class="search_input"> <!-- 찾아보기 인풋에서 후기 제목 정확히 쓰면 해당 후기만 보여주기 선택한 게시판에서만 해당, 선택 안했을 땐 alert 띄우기 -->
+        <button class="search_button">찾아보기</button> <!-- 부분만 써도 후기 보여주기까지 구현? like %후기 로 구현할 수 있을듯? -->
     </div>
     <div style=" display:flex; justify-content:center;">
         <div style=" margin-top:30px; width:1250px;">
             <button class="new_content" onclick="location.href='new_content.php'">새 글 쓰기</button>
         </div>
     </div>
-    <div style="display:flex; justify-content:center;">
+    <div style="display:flex; justify-content:center;"> <!-- 세부 게시판 정보에 따라 동적으로 후기 리스트 보여주기, 후기 제목 선택하면 후기 내용 보여주기 구현 필요 -->
         <table class="qa_table">
             <tr class="table_row">
                 <td class="column1">후기</td> <td class="column2">2022.08.17</td> <td class="column3">yu</td>
@@ -180,4 +180,4 @@
         <div style="border-bottom: 1px solid black; height:25px; width:20px;text-align:center;font-size:15px;">1</div>
     </div>
 </body>
-</html>
+</html> <!-- 일단 실기게시판 완료해놓기 필기게시판은 필요시에만 복붙해서 구현 -->
