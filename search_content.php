@@ -63,13 +63,13 @@
     <script>
         <?php
             if ($_POST["search_board_type"] == "qa" ) ?> //전달받은 보드타입으로 박스 색칠하기, 변경 불가
-                document.getElementById('qa').style.backgroundColor="#e0f2f0";
+                //document.getElementById('qa').style.backgroundColor="#e0f2f0";
         <?php
             if ($_POST["search_board_type"] == "review") ?>
-                document.getElementById('review').style.backgroundColor="#e0f2f0";
+                ///document.getElementById('review').style.backgroundColor="#e0f2f0";
         <?php
             if ($_POST["search_board_type"] == "info") ?>
-                document.getElementById('info').style.backgroundColor="#e0f2f0";
+                //document.getElementById('info').style.backgroundColor="#e0f2f0";
     </script>
 
     

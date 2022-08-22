@@ -2,7 +2,7 @@
     <head>
         <title>실기 게시판</title>
         
-    <?php //로그인 된 경우 회원 이름 띄우기 구현 필요
+    <?php //세션은 헤더가 서버로 보내지기 전에 선언돼야 한대서 위로 올ㄹ림
     include "dbconn.php";
     ?>
         <style>
@@ -145,35 +145,18 @@
 
     <script>
         function qa_clicked() {
-            /* if (sessionStorage.getItem('board_type')=='qa') {
-                var element = document.getElementById('qa');
-                element.style.backgroundColor="#e0f2f0";
-                document.getElementById('review').style.backgroundColor="white"; //선택한 박스 색 칠하기
-                document.getElementById('info').style.backgroundColor="white";
-            } */
             sessionStorage.setItem('board_type', 'qa');
             var url = "about_2nd_test.php?board_type=qa"; //get으로 쿼리스트링으로 js에서 php로 변수 이동시킴
             location.href=url;
             document.getElementById('search_board_type').value = "qa"; //찾아보기 구현 위해서 히든 인풋값 설정
         }
         function review_clicked() {
-            /* if (sessionStorage.getItem('board_type')=='review') {
-                document.getElementById('review').style.backgroundColor="#e0f2f0";
-                document.getElementById('qa').style.backgroundColor="white";
-                document.getElementById('info').style.backgroundColor="white";
-            } */
             sessionStorage.setItem('board_type', 'review');
             var url = "about_2nd_test.php?board_type=review";
             location.href=url;
             document.getElementById('search_board_type').value = "review";
         }
         function info_clicked() {
-            /* if (sessionStorage.getItem('board_type')=='info') {
-                var element = document.getElementById('info');
-                element.style.backgroundColor="#e0f2f0";
-                document.getElementById('review').style.backgroundColor="white";
-                document.getElementById('qa').style.backgroundColor="white";
-            } */
             sessionStorage.setItem('board_type', 'info');
             var url = "about_2nd_test.php?board_type=info";
             location.href=url;
