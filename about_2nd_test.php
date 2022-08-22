@@ -179,7 +179,7 @@
             else 
                 $page = 1;
 
-            if (isset($_GET["page"])) //일단 qa테이블이 디폴트, 직접 박스 클릭 안하면 get으로 보낼 수 없음, alert 설정 필요
+            if (isset($_GET["board_type"])) //일단 qa테이블이 디폴트, 직접 박스 클릭 안하면 get으로 보낼 수 없음, alert 설정 필요
                 $get_board_type = $_GET['board_type'];
             else 
                 $get_board_type = "qa";
@@ -224,10 +224,14 @@
     <div style="display:flex; justify-content:center;"> <!-- 후기 한페이지에 10개, 넘어갈 때 페이지 구현 -->
         <?php 
             for ($i=1; $i<=$total_page; $i++) {
-                if ($page == $i)
+                if ($page == $i) {
+                    $new_url = "about_2nd_test.php";
                     echo "<div style='border-bottom: 1px solid black; height:25px; width:20px;text-align:center;font-size:15px;'>$i</div>";
-                else
-                    echo "<li><a style='border-bottom: 1px solid black; height:25px; width:20px;text-align:center;font-size:15px;' href=url+'page=$i'>$i</a></li>";
+                }
+                else {
+                    $new_url = "about_2nd_test.php"."?board_type=$get_board_type"."&page=$i";
+                    echo "<a style='border-bottom: 1px solid black; height:25px; width:20px;text-align:center;font-size:15px;' href='$new_url'>$i</a>";
+                }
             }
         ?>
         <!-- <div style="border-bottom: 1px solid black; height:25px; width:20px;text-align:center;font-size:15px;">1</div> -->
