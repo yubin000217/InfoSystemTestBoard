@@ -123,11 +123,12 @@
         function qa_clicked() {
             var element = document.getElementById('qa');
             element.style.backgroundColor="#e0f2f0"
-            document.getElementById('review').style.backgroundColor="white";
+            document.getElementById('review').style.backgroundColor="white"; //선택한 박스 색 칠하기
             document.getElementById('info').style.backgroundColor="white";
             sessionStorage.setItem('board_type', 'qa');
-            var url = "about_2nd_test.php?board_type=qa";
+            var url = "about_2nd_test.php?board_type=qa"; //get으로 쿼리스트링으로 js에서 php로 변수 이동시킴
             location.href=url;
+            document.getElementById('search_board_type').value = "qa"; //찾아보기 구현 위해서 히든 인풋값 설정
         }
         function review_clicked() {
             var element = document.getElementById('review');
@@ -137,6 +138,7 @@
             sessionStorage.setItem('board_type', 'review');
             var url = "about_2nd_test.php?board_type=review";
             location.href=url;
+            document.getElementById('search_board_type').value = "review";
         }
         function info_clicked() {
             var element = document.getElementById('info');
@@ -146,6 +148,21 @@
             sessionStorage.setItem('board_type', 'info');
             var url = "about_2nd_test.php?board_type=info";
             location.href=url;
+            document.getElementById('search_board_type').value = "info";
+        }
+
+        function check_search_input() {
+            if(!document.search.search_input.value) {
+                alert("내용을 입력하세요");
+                document.search.search_input.focus();
+                return;
+            }
+            if(!document.search.search_board_type.value) {
+                alert("종류를 선택하세요");
+                document.search.search_input.focus();
+                return;
+            }
+            document.search.submit();
         }
     </script>
 
@@ -162,8 +179,11 @@
         </div>
     </div>
     <div style="display:flex; justify-content:center;">
-        <input class="search_input"> <!-- 찾아보기 인풋에서 후기 제목 정확히 쓰면 해당 후기만 보여주기 선택한 게시판에서만 해당, 선택 안했을 땐 alert 띄우기 -->
-        <button class="search_button">찾아보기</button> <!-- 부분만 써도 후기 보여주기까지 구현? like %후기 로 구현할 수 있을듯? -->
+        <form name="search" method="post" action="search_content.php">
+            <input type="hidden" class="search_board_type" name="search_board_type" id="search_board_type" value="" placeholder="찾고싶은 후기의 제목을 입력하세요">
+            <input class="search_input" name="search_input"> <!-- 찾아보기 인풋에서 후기 제목 정확히 쓰면 해당 후기만 보여주기 선택한 게시판에서만 해당, 선택 안했을 땐 alert 띄우기 -->
+            <button class="search_button" name="search_button" onclick="check_search_input()">찾아보기</button> <!-- 부분만 써도 후기 보여주기까지 구현? like %후기 로 구현할 수 있을듯? -->
+        </form>
     </div>
     <div style=" display:flex; justify-content:center;">
         <div style=" margin-top:30px; width:1250px;">
