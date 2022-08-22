@@ -47,7 +47,7 @@
         </style>
     </head>
 <body> 
-    <?php //로그인 된 경우 회원 이름 띄우기 구현 필요
+    <?php 
     include "dbconn.php";
 
     $user_id = "";
@@ -95,10 +95,9 @@
         
         <table class="qa_table">
         <?php 
-            include "dbconn.php";
 
-            $search_input = $_POST["search_input"];
             $search_board_type = $_POST["search_board_type"];
+            $search_input = $_POST["search_input"];
             
             $like_search_input = '%'.$search_input.'%';
 
