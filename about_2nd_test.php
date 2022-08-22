@@ -107,7 +107,8 @@
     </head>
 <body> 
     <?php //로그인 된 경우 회원 이름 띄우기 구현 필요
-    session_start();
+    include "dbconn.php";
+
     $user_id = "";
     if(isset($_SESSION["id"])) {
         $user_id = $_SESSION["id"];
@@ -125,6 +126,8 @@
             document.getElementById('review').style.backgroundColor="white";
             document.getElementById('info').style.backgroundColor="white";
             sessionStorage.setItem('board_type', 'qa');
+            var url = "about_2nd_test.php?board_type=qa";
+            location.href=url;
         }
         function review_clicked() {
             var element = document.getElementById('review');
@@ -132,6 +135,8 @@
             document.getElementById('qa').style.backgroundColor="white";
             document.getElementById('info').style.backgroundColor="white";
             sessionStorage.setItem('board_type', 'review');
+            var url = "about_2nd_test.php?board_type=review";
+            location.href=url;
         }
         function info_clicked() {
             var element = document.getElementById('info');
@@ -139,6 +144,8 @@
             document.getElementById('review').style.backgroundColor="white";
             document.getElementById('qa').style.backgroundColor="white";
             sessionStorage.setItem('board_type', 'info');
+            var url = "about_2nd_test.php?board_type=info";
+            location.href=url;
         }
     </script>
 
@@ -164,20 +171,66 @@
         </div>
     </div>
     <div style="display:flex; justify-content:center;"> <!-- 세부 게시판 정보에 따라 동적으로 후기 리스트 보여주기, 후기 제목 선택하면 후기 내용 보여주기 구현 필요 -->
+        
         <table class="qa_table">
-            <tr class="table_row">
-                <td class="column1">후기</td> <td class="column2">2022.08.17</td> <td class="column3">yu</td>
-            </tr>
-            <tr class="table_row">
-                <td class="column1">후기</td> <td class="column2">2022.08.17</td> <td class="column3">yu</td>
-            </tr>
-            <tr class="table_row">
-                <td class="column1">후기</td> <td class="column2">2022.08.17</td> <td class="column3">yu</td>
-            </tr>
-        </table>
+        <?php 
+            if (isset($_GET["page"])) 
+                $page = $_GET["page"];
+            else 
+                $page = 1;
+
+            if (isset($_GET["page"])) //일단 qa테이블이 디폴트, 직접 박스 클릭 안하면 get으로 보낼 수 없음, alert 설정 필요
+                $get_board_type = $_GET['board_type'];
+            else 
+                $get_board_type = "qa";
+            
+            $list_sql = "select * from $get_board_type order by num desc"; 
+            $list_result = mysqli_query($conn, $list_sql);
+
+            $total_list = mysqli_num_rows($list_result);
+
+            $scale = 10;
+
+            if ($total_list % $scale ==0) 
+                $total_page = floor($total_list/$scale);
+            else 
+                $total_page = floor($total_list/$scale) +1;
+
+            $start = (intval($page)-1)*$scale;
+
+            $number = $total_list - $start;
+            for ($i = $start; $i<$start+$scale && $i<$total_list; $i++) {
+                mysqli_data_seek($list_result, $i);
+                $row = mysqli_fetch_assoc($list_result);
+
+                $num = $row["num"];
+                $id = $row["id"];
+                $date = $row["date"];
+                $title = $row["title"];
+                ?>
+
+                <tr class="table_row">
+                    <td class="column1"><?=$title?></td> <td class="column2"><?=$date?></td> <td class="column3"><?=$id?></td>
+                </tr>
+
+                <?php
+                $number--;
+            }
+            mysqli_close($conn);
+            ?>
+            
+            </table>
     </div><br><br><br><br>
-    <div style="display:flex; justify-content:center;"> <!-- 후기 한페이지에 10개, 넘어갈 때 페이지 구현 필요 -->
-        <div style="border-bottom: 1px solid black; height:25px; width:20px;text-align:center;font-size:15px;">1</div>
+    <div style="display:flex; justify-content:center;"> <!-- 후기 한페이지에 10개, 넘어갈 때 페이지 구현 -->
+        <?php 
+            for ($i=1; $i<=$total_page; $i++) {
+                if ($page == $i)
+                    echo "<div style='border-bottom: 1px solid black; height:25px; width:20px;text-align:center;font-size:15px;'>$i</div>";
+                else
+                    echo "<li><a style='border-bottom: 1px solid black; height:25px; width:20px;text-align:center;font-size:15px;' href=url+'page=$i'>$i</a></li>";
+            }
+        ?>
+        <!-- <div style="border-bottom: 1px solid black; height:25px; width:20px;text-align:center;font-size:15px;">1</div> -->
     </div>
 </body>
 </html> <!-- 일단 실기게시판 완료해놓기 필기게시판은 필요시에만 복붙해서 구현 -->
