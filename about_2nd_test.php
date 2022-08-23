@@ -94,6 +94,15 @@
                 width:980px;
                 padding-left:20px;
                 font-size:20px;
+                cursor:pointer;
+            }
+            .column1:active {
+                font-weight:bold;
+                width:980px;
+                background-color:#e0f2f0;
+                padding-left:20px;
+                font-size:20px;
+                cursor:pointer;
             }
             .column2 {
                 width:100px;
@@ -106,6 +115,26 @@
                 text-align:center;
                 font-size:15px;
                 border-left:1px dotted black;
+            }
+            .title_button {
+                background-color:white;
+                border:0px;
+                font-size:20px;
+                font-weight:bold;
+            }
+            .title_button:hover {
+                background-color:white;
+                border:0px;
+                font-size:20px;
+                font-weight:bold;
+                cursor:pointer;
+            }
+            .title_button:active {
+                background-color:#e0f2f0;
+                border:0px;
+                font-size:20px;
+                font-weight:bold;
+                cursor:pointer;
             }
         </style>
         <script>
@@ -182,6 +211,13 @@
             document.search.submit();
         }
     </script>
+    
+    <script>
+        function title_clicked() {
+            //곧바로 submit, content_num만 post로 넘겨주기
+            document.view_content.submit();
+        }
+    </script>
 
     <h4 onclick="location.href='main.php'" style="margin-left:10px; margin-top:10px; margin-botton:0px; height:10px; padding:0px; float:left;">실기게시판</h4>
     <h4 onclick="location.href='login.php'" style="text-align:right; margin-right:10px; margin-top:10px; margin-bottom:0px; height:10px; padding:0px; float:right;" >
@@ -244,12 +280,21 @@
                 $id = $row["id"];
                 $date = $row["date"];
                 $title = $row["title"];
+                $content = $row["content"];
                 ?>
 
                 <tr class="table_row">
-                    <td class="column1"><?=$title?></td> <td class="column2"><?=$date?></td> <td class="column3"><?=$id?></td>
+                <form name="view_content" method="post" action="view_content.php">
+                    <input type="hidden" name="content_title" id="content_title" value="<?=$title?>"> <!-- 콘텐트 넘버 넘겨주기 위한 히든 인풋 설정ㅇ -->
+                    <input type="hidden" name="content_content" id="content_content" value="<?=$content?>">
+                    <input type="hidden" name="content_date" id="content_date" value="<?=$date?>">
+                    <input type="hidden" name="content_id" id="content_id" value="<?=$id?>">
+                    <td class="column1"><button class="title_button" onclick='title_clicked()'><?=$title?></button></td> 
+                    <td class="column2"><?=$date?></td> 
+                    <td class="column3"><?=$id?></td>
+                </form>
                 </tr>
-
+                
                 <?php
                 $number--;
             }
