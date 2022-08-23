@@ -15,9 +15,19 @@
                 color:#008080;
                 font-weight:bold;
                 margin-top:50px;
-                cursor:pointer;
             }
-            
+            .new_content {
+                float:right; width:300px; height:60px; background-color:#e0f2f0;
+                border: 2px solid #008080;
+                font-weight:bold;
+                font-size:15px;
+            }
+            .new_content:active {
+                float:right; width:300px; height:60px; background-color:#b2dfde;
+                border: 2px solid #008080;
+                font-weight:bold;
+                flex:right;
+            }
             .qa_table {
                 margin-top:40px;
                 /* border: 1px solid black; */
@@ -46,20 +56,20 @@
             }
         </style>
         
-<!--     <script> 이건 또 왜 안되는지 모르겠는데 암튼 일단 냅둬보자
-        <?php
-            if ($_POST["search_board_type"] == "qa" ) ?> //전달받은 보드타입으로 박스 색칠하기, 변경 불가
+    <script>
+        function color_board_type_box() {
+            if (sessionStorage.getItem(['board_type']) == "qa" )  //전달받은 보드타입으로 박스 색칠하기, 변경 불가
                 document.getElementById('qa').style.backgroundColor="#e0f2f0";
-        <?php
-            if ($_POST["search_board_type"] == "review") ?>
+            if (sessionStorage.getItem(['board_type']) == "review") 
                 document.getElementById('review').style.backgroundColor="#e0f2f0";
-        <?php
-            if ($_POST["search_board_type"] == "info") ?>
+            if (sessionStorage.getItem(['board_type']) == "info") 
                 document.getElementById('info').style.backgroundColor="#e0f2f0";
-    </script> -->
+        }
+        
+    </script>
 
     </head>
-<body> 
+<body onload="color_board_type_box()"> 
     <?php 
     include "dbconn.php";
 
