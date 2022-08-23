@@ -15,9 +15,19 @@
                 color:#008080;
                 font-weight:bold;
                 margin-top:50px;
-                cursor:pointer;
             }
-            
+            .new_content {
+                float:right; width:300px; height:60px; background-color:#e0f2f0;
+                border: 2px solid #008080;
+                font-weight:bold;
+                font-size:15px;
+            }
+            .new_content:active {
+                float:right; width:300px; height:60px; background-color:#b2dfde;
+                border: 2px solid #008080;
+                font-weight:bold;
+                flex:right;
+            }
             .qa_table {
                 margin-top:40px;
                 /* border: 1px solid black; */
@@ -45,8 +55,21 @@
                 border-left:1px dotted black;
             }
         </style>
+        
+    <script>
+        function color_board_type_box() {
+            if (sessionStorage.getItem(['board_type']) == "qa" )  //전달받은 보드타입으로 박스 색칠하기, 변경 불가
+                document.getElementById('qa').style.backgroundColor="#e0f2f0";
+            if (sessionStorage.getItem(['board_type']) == "review") 
+                document.getElementById('review').style.backgroundColor="#e0f2f0";
+            if (sessionStorage.getItem(['board_type']) == "info") 
+                document.getElementById('info').style.backgroundColor="#e0f2f0";
+        }
+        
+    </script>
+
     </head>
-<body> 
+<body onload="color_board_type_box()"> 
     <?php 
     include "dbconn.php";
 
@@ -60,19 +83,6 @@
     $_SESSION["board_type"] = "";
     ?>
 
-    <script>
-        <?php
-            if ($_POST["search_board_type"] == "qa" ) ?> //전달받은 보드타입으로 박스 색칠하기, 변경 불가
-                //document.getElementById('qa').style.backgroundColor="#e0f2f0";
-        <?php
-            if ($_POST["search_board_type"] == "review") ?>
-                ///document.getElementById('review').style.backgroundColor="#e0f2f0";
-        <?php
-            if ($_POST["search_board_type"] == "info") ?>
-                //document.getElementById('info').style.backgroundColor="#e0f2f0";
-    </script>
-
-    
 
     <h4 onclick="location.href='main.php'" style="margin-left:10px; margin-top:10px; margin-botton:0px; height:10px; padding:0px; float:left;">실기게시판</h4>
     <h4 onclick="location.href='login.php'" style="text-align:right; margin-right:10px; margin-top:10px; margin-bottom:0px; height:10px; padding:0px; float:right;" >
@@ -101,7 +111,7 @@
             
             $like_search_input = '%'.$search_input.'%';
 
-            $search_sql = "select * from $search_board_type where title like $like_search_input order by num desc"; 
+            $search_sql = "select * from $search_board_type where title like '$like_search_input'"; 
             $search_result = mysqli_query($conn, $search_sql);
 
             $total_search = mysqli_num_rows($search_result);
