@@ -148,19 +148,16 @@
             sessionStorage.setItem('board_type', 'qa');
             var url = "about_2nd_test.php?board_type=qa"; //get으로 쿼리스트링으로 js에서 php로 변수 이동시킴
             location.href=url;
-            document.getElementById('search_board_type').value = "qa"; //찾아보기 구현 위해서 히든 인풋값 설정
         }
         function review_clicked() {
             sessionStorage.setItem('board_type', 'review');
             var url = "about_2nd_test.php?board_type=review";
             location.href=url;
-            document.getElementById('search_board_type').value = "review";
         }
         function info_clicked() {
             sessionStorage.setItem('board_type', 'info');
             var url = "about_2nd_test.php?board_type=info";
             location.href=url;
-            document.getElementById('search_board_type').value = "info";
         }
 
         function check_search_input() {
@@ -169,6 +166,14 @@
                 document.search.search_input.focus();
                 return;
             }
+
+            if (sessionStorage.getItem('board_type') == 'qa') //찾아보기 구현 위해서 히든 인풋 값 설정
+                document.getElementById('search_board_type').value = "qa";
+            if (sessionStorage.getItem('board_type') == 'review')
+                document.getElementById('search_board_type').value = "review";
+            if (sessionStorage.getItem('board_type') == 'info')
+                document.getElementById('search_board_type').value = "info";
+            
             if(!document.search.search_board_type.value) {
                 alert("종류를 선택하세요");
                 history.go(-1);

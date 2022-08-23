@@ -45,6 +45,19 @@
                 border-left:1px dotted black;
             }
         </style>
+        
+<!--     <script> 이건 또 왜 안되는지 모르겠는데 암튼 일단 냅둬보자
+        <?php
+            if ($_POST["search_board_type"] == "qa" ) ?> //전달받은 보드타입으로 박스 색칠하기, 변경 불가
+                document.getElementById('qa').style.backgroundColor="#e0f2f0";
+        <?php
+            if ($_POST["search_board_type"] == "review") ?>
+                document.getElementById('review').style.backgroundColor="#e0f2f0";
+        <?php
+            if ($_POST["search_board_type"] == "info") ?>
+                document.getElementById('info').style.backgroundColor="#e0f2f0";
+    </script> -->
+
     </head>
 <body> 
     <?php 
@@ -60,19 +73,6 @@
     $_SESSION["board_type"] = "";
     ?>
 
-    <script>
-        <?php
-            if ($_POST["search_board_type"] == "qa" ) ?> //전달받은 보드타입으로 박스 색칠하기, 변경 불가
-                //document.getElementById('qa').style.backgroundColor="#e0f2f0";
-        <?php
-            if ($_POST["search_board_type"] == "review") ?>
-                ///document.getElementById('review').style.backgroundColor="#e0f2f0";
-        <?php
-            if ($_POST["search_board_type"] == "info") ?>
-                //document.getElementById('info').style.backgroundColor="#e0f2f0";
-    </script>
-
-    
 
     <h4 onclick="location.href='main.php'" style="margin-left:10px; margin-top:10px; margin-botton:0px; height:10px; padding:0px; float:left;">실기게시판</h4>
     <h4 onclick="location.href='login.php'" style="text-align:right; margin-right:10px; margin-top:10px; margin-bottom:0px; height:10px; padding:0px; float:right;" >
@@ -101,7 +101,7 @@
             
             $like_search_input = '%'.$search_input.'%';
 
-            $search_sql = "select * from $search_board_type where title like $like_search_input order by num desc"; 
+            $search_sql = "select * from $search_board_type where title like '$like_search_input'"; 
             $search_result = mysqli_query($conn, $search_sql);
 
             $total_search = mysqli_num_rows($search_result);
